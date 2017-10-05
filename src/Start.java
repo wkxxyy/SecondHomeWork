@@ -13,7 +13,7 @@ public class Start {
         for (int i=1;i<5;i++){//初始化任务集合
             Task task=new Task(i);
             task.setPeriod((int)(Math.random()*50));//运行时间设置为50秒以内
-            task.setNeedUtilization(random.nextInt(10)+1);//设置任务需要使用的利用率，在1到10之间
+            task.setNeedUtilization(random.nextInt(100)+1);//设置任务需要使用的利用率，在1到100之间
             taskList.add(task);
         }
 
