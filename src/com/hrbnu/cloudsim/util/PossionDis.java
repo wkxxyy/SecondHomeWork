@@ -1,4 +1,4 @@
-package Util;
+package com.hrbnu.cloudsim.util;
 
 public class PossionDis {
     public static int getPossionVariable(double lamda) {
@@ -18,4 +18,5 @@ public class PossionDis {
         }
         return sum * c;
     }
+
 }

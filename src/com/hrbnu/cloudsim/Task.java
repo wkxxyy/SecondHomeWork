@@ -1,4 +1,6 @@
-import Util.PossionDis;
+package com.hrbnu.cloudsim;
+
+import com.hrbnu.cloudsim.util.PossionDis;
 
 public class Task implements Comparable<Task>{
     private int id;//Id

@@ -1,4 +1,4 @@
-import sun.misc.VM;
+package com.hrbnu.cloudsim;
 
 import java.util.*;
 
@@ -47,7 +47,7 @@ public class Start {
 
                     if (currentVmware.getResidualUtilization()>currentTask.getNeedUtilization()){//当前虚拟机剩余的利用率大于任务所需要的利用率，就继续
                         currentTask.setStartTime(getMinutes());//设置任务开始时间,就是当前的时间的分钟数
-                        currentVmware.runTask(currentTask);//开始运行
+                        BindTasksToVm.RunTaskWithFifo(currentTask,currentVmware);//开始运行
                         break;
                     }else {
                         break;
