@@ -3,6 +3,7 @@ package com.hrbnu.cloudsim;
 import com.hrbnu.cloudsim.util.PossionDis;
 
 public class Task implements Comparable<Task>{
+
     private int id;//Id
     private int arrivalTime;//到达时间
     private int startTime;//开始时间
@@ -24,6 +25,10 @@ public class Task implements Comparable<Task>{
 
     public int getArrivalTime() {
         return arrivalTime;
+    }
+
+    public void setArrivalTime(int arrivalTime) {
+        this.arrivalTime = arrivalTime;
     }
 
     public int getStartTime() {

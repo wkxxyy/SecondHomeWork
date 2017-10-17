@@ -7,18 +7,21 @@ import java.util.Date;
 public class BindTasksToVm {
 
 
-    private static double EVIM;//消耗的能耗
+
 
 
     public static void RunTaskWithFifo(Task task,Vmware vmware){
 
 
-        vmware.setTaskId(task.getId());//设置虚拟机当前运行的程序id
-        vmware.setResidualUtilization(vmware.getTotalUtilization()-task.getNeedUtilization());//设置虚拟机的剩余利用率
+        vmware.addTask(task);//设置虚拟机当前运行的程序集合
+        vmware.setUsedUtilization(vmware.getUsedUtilization()+task.getNeedUtilization());//设置已经使用的利用率
+        vmware.setResidualUtilization(vmware.getTotalUtilization()-vmware.getUsedUtilization());//设置虚拟机的剩余利用率
         vmware.setRunning(true);//虚拟机设置为正在运行状态
-        vmware.setRunning(true);//设置任务正在运行
-        vmware.setUsedUtilization(task.getNeedUtilization());//设置已经使用的利用率
-        EVIM= CalculatePower.getCalculatePower(task);//计算能耗
+        task.setRunning(true);//设置任务正在运行
+        vmware.addClock(task.getFinishTime());
+        vmware.orderClock();//排序一下取得最小的运行时间
+
+        //EVIM= CalculatePower.getCalculatePower(task);//计算能耗
 
         int taskId=task.getId();
         int vmwareId=vmware.getId();
@@ -41,12 +44,12 @@ public class BindTasksToVm {
 
 
         }
-        task.setFinishTime(new Date().getMinutes());//这是任务结束时间
+        //task.setFinishTime(new Date().getMinutes());//这是任务结束时间
         task.setFinish(true);//任务设置为完成状态
         vmware.setRunning(false);//虚拟机设置为没有在运行状态
         System.out.println("-------------------------------------");
         System.out.println(taskId+"号任务运行完毕，运行结束时间为："+task.getFinishTime());
-        System.out.println(taskId+"号任务在"+vmwareId+"号虚拟机上消耗的能耗为："+EVIM);
+        //System.out.println(taskId+"号任务在"+vmwareId+"号虚拟机上消耗的能耗为："+EVIM);
         System.out.println("*********************************************");
         System.out.println();
 
