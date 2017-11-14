@@ -1,10 +1,11 @@
 package com.hrbnu.cloudsim;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class Vmware {
+public class Vmware implements Serializable {
 
     private static List<Integer> clock=new ArrayList<>();//任务完成时间列表
     private int minClock=0;//当前最下的任务完成时间

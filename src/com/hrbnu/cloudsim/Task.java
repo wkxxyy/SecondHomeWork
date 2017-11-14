@@ -2,7 +2,9 @@ package com.hrbnu.cloudsim;
 
 import com.hrbnu.cloudsim.util.PossionDis;
 
-public class Task implements Comparable<Task>{
+import java.io.Serializable;
+
+public class Task implements Comparable<Task>,Serializable {
 
     private int id;//Id
     private int arrivalTime;//到达时间
@@ -10,6 +12,8 @@ public class Task implements Comparable<Task>{
     private int period;//运行时间，周期
     private int finishTime;//完成时间
     private int needUtilization;//需要的利用率
+    private int burstTime;
+    private double fitness;//健康度
 
     private boolean isRunning=false;//任务是否在运行的标识
     private boolean isFinish=false;//任务是否完成的标识
@@ -37,6 +41,7 @@ public class Task implements Comparable<Task>{
 
     public void setStartTime(int startTime) {
         this.startTime = startTime;
+        setBurstTime(getStartTime()-getArrivalTime());
     }
 
     public int getPeriod() {
@@ -79,14 +84,51 @@ public class Task implements Comparable<Task>{
         isFinish = finish;
     }
 
-    /*
-            按照到达时间进行集合排序
+    public double getFitness() {
+        return fitness;
+    }
 
-         */
-    @Override
+    public void setFitness(double fitness) {
+        this.fitness = fitness;
+    }
+
+    public int getBurstTime() {
+        return burstTime;
+    }
+
+    public void setBurstTime(int burstTime) {
+        this.burstTime = burstTime;
+    }
+
+    /*
+                按照到达时间进行集合排序
+
+             */
+
     public int compareTo(Task o) {
         int i = this.getArrivalTime() - o.getArrivalTime();//
 
         return i;
     }
+
+    /*public int compareTo(Task o) {
+        int i = this.getBurstTime() - o.getBurstTime();//
+
+        return i;
+    }*/
+
+ /*  public int compareTo(Task o) {
+        int i;
+        if ( (this.getFitness() - o.getFitness())>0){
+            i=1;
+        }else if((this.getFitness() - o.getFitness())==0){
+            i=0;
+        }
+        else{
+            i=-1;
+        }
+
+
+        return i;
+    }*/
 }

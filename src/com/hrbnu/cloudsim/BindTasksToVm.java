@@ -36,11 +36,11 @@ public class BindTasksToVm {
 
         for (int time=0;time<task.getPeriod();time++){
             System.out.println(taskId+"号任务剩余运行时间为："+(task.getPeriod()-time));
-            try {
-                Thread.sleep(1000);
+           /* try {
+                //Thread.sleep(1000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
-            }
+            }*/
 
 
         }
